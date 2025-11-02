@@ -19,8 +19,8 @@ import { usePathname } from "next/navigation";
     { href: "/", label: "الرئيسية", icon: <TiHome  className="text-[#C39E71]" /> },
     { href: "/thoughts", label: "خواطر" },
     { href: "/stories", label: "قصص" },
-    { href: "2", label: " عن راما" },
-    { href: "3", label: "تواصل معنا" },
+    { href: "/about", label: " عن راما" },
+    { href: "/contact", label: "تواصل معنا" },
   ];
 
 
@@ -38,33 +38,21 @@ import { usePathname } from "next/navigation";
                 </span>
                 <span className="flex items-center justify-center flex-row-reverse gap-1">
                     <FaWhatsapp className="text-[#827382]" />
-                    00971505292454
+                      00905347152280
                 </span>
                 <span className="flex items-center justify-center flex-row-reverse gap-1">
                     <MdEmail className="text-[#827382]" />
-                    ramahamou.blogspot.com
+                      ramahamou.blogspot.com
                 </span>
                 </div>
 
                 {/* Right side - Social icons */}
                 <div className="flex items-center flex-row-reverse text-[#827382]">
-                <Link href="#" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
-                    <FaFacebookF size={14} />
-                </Link>
-                <Link href="#" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
+                <Link href="https://www.instagram.com/rama.yh?utm_source=qr&igsh=MTA2a251d3dvZDNmdg==" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
                     <FaInstagram size={14} />
                 </Link>
-                <Link href="#" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
-                    <FaYoutube size={14} />
-                </Link>
-                <Link href="#" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
-                    <FaTelegramPlane size={14} />
-                </Link>
-                <Link href="#" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
+                <Link href="https://wa.me/905347152280" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
                     <FaWhatsapp size={14} />
-                </Link>
-                <Link href="#" className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition">
-                    <FaTiktok size={14} />
                 </Link>
                 </div>
          </div>
@@ -257,7 +245,7 @@ import { usePathname } from "next/navigation";
                 <MdEmail />  ramahamou.blogspot.com
                 </p>
                 <p className="mb-3 flex justify-center gap-2 items-center text-gray-200">
-                <FaWhatsapp /> +970568402208
+                <FaWhatsapp />  +905347152280
                 </p>
 
                 <div className="flex justify-center gap-2 text-gray-200">

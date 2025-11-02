@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import { Cairo } from 'next/font/google'
 import "./globals.css";
 import Navbar from "./src/Components/Navbar/Navbar";
-import { Noto_Sans_Arabic } from "next/font/google";
 
-const noto = Noto_Sans_Arabic({
-  subsets: ["arabic"],
+const cairo = Cairo({ 
+  subsets: ['arabic'],
   weight: ["400", "700"],
-});
-
+ })
 
 export const metadata: Metadata = {
   title: "Rama Hamou Blogspot",
@@ -21,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <body className={noto.className}
+       <body className={cairo .className}
       >
           <Navbar />
           {children}
