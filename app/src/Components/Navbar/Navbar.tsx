@@ -17,7 +17,8 @@ import { usePathname } from "next/navigation";
 
     const links = [
     { href: "/", label: "الرئيسية", icon: <TiHome  className="text-[#C39E71]" /> },
-    { href: "1", label: "معرض الصور" },
+    { href: "/thoughts", label: "خواطر" },
+    { href: "/stories", label: "قصص" },
     { href: "2", label: " عن راما" },
     { href: "3", label: "تواصل معنا" },
   ];
@@ -74,7 +75,7 @@ import { usePathname } from "next/navigation";
         <div className=" md:mx-11 flex flex-row-reverse justify-between items-center p-4">
             {/* Logo */}
             <Link href="/" className="text-2xl font-serif text-[#C39E71]">
-            راما حمو
+            رامه حمو
             </Link>
             <ul className="hidden  md:flex flex-row-reverse  gap-8 text-[#C39E71] font-medium relative">
                     {links.slice(0, 2).map((link) => ( 

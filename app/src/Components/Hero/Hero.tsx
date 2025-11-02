@@ -18,10 +18,11 @@ const Hero = () => {
         <div className="flex flex-col items-center mb-6">
             <Image
             src="/Images/image.png" // ضع مسار شعارك هنا
-            alt="استروجينات"
+            alt="rama"
             width={500}
             height={400}
             className="object-contain"
+            unoptimized
             />
         </div>
 
@@ -37,7 +38,7 @@ const Hero = () => {
         </h2>
 
         <p className="text-lg md:text-xl text-[#6B3074] font-semibold">
-          في هذا الركن الهادئ من "الصالون" أشارك أفكارًا ومشاهد تتشكل في داخلي
+          في هذا الركن الهادئ من ’’ الصالون ’’ أشارك أفكارًا ومشاهد تتشكل في داخلي
            
           <br />
           ..كما لو أننا نجلس معًا.. ونترك العنان لكلماتنا أن تدلي بما لدينا..
