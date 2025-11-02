@@ -1,5 +1,5 @@
 "use client";
-import { FaWhatsapp, FaFacebookF, FaInstagram, FaYoutube, FaTelegramPlane, FaTiktok, FaSearch } from "react-icons/fa";
+import { FaWhatsapp,  FaInstagram, FaSearch } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
@@ -260,7 +260,7 @@ import { usePathname } from "next/navigation";
                 </p>
 
                 <div className="flex justify-center gap-2 text-gray-200">
-                {[FaTiktok, FaWhatsapp, FaTelegramPlane, FaYoutube, FaInstagram, FaFacebookF].map(
+                {[FaWhatsapp, FaInstagram].map(
                     (Icon, i) => (
                     <Link
                         key={i}
