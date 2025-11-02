@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
     const [showSearch, setShowSearch] = useState(false);
+     const [openArticles, setOpenArticles] = useState(false);
     const [query, setQuery] = useState("");
 
 
@@ -185,60 +186,70 @@ import { usePathname } from "next/navigation";
                 </button>
 
                 <h2 className="text-center mb-6 font-semibold text-lg">
-                راما حمو
+                 راما حمو
                 </h2>
-
-            <ul className="space-y-3 flex flex-col items-end font-semibold text-lg ">
-               {links.slice(0, 2).map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="block px-3 py-2 rounded-md hover:bg-[#6B3074] transition"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-               <li className="mt-2 w-full flex flex-col items-end "
-                >
-                    <button className="flex items-center justify-center text-right  gap-1 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white">
-                        <IoChevronDown />  المقالات
-                        
-                    </button>
-                    <ul className="absolute right-0 top-full mt-1 w- text-right bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        {[
-                        { href: "#", label: "!غيرتني الإبادة" },
-                        { href: "+", label: "محاكاة في حلبة المصارعة - القسم الأول" },
-                        { href: "-", label: "محاكاة في حلبة المصارعة - القسم الثاني" },
-                        ].map((blogs) => (
-                        <li key={blogs.href}>
-                            <Link
-                            href={blogs.href}
-                            className={`block px-4 py-4 rounded-md transition-all duration-200
-                                ${
-                                pathname === blogs.href
-                                    ? "text-[#C39E71] font-semibold"
-                                    : "text-[#C39E71] hover:bg-gray-200 hover:text-[#6B3074]"
-                                }`}
-                            >
-                            {blogs.label}
-                            </Link>
+                <ul className="space-y-3 flex flex-col items-end font-semibold text-lg">
+                    
+                    {links.slice(0, 2).map((link) => (
+                        <li key={link.label}>
+                        <Link
+                            href={link.href}
+                            onClick={() => setOpen(false)}
+                            className="block px-3 py-2 rounded-md hover:bg-[#6B3074] transition"
+                        >
+                            {link.label}
+                        </Link>
                         </li>
-                        ))}
-                    </ul>
-                </li>
-                {links.slice(2).map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="px-4 py-4 flex justify-between items-center w-full text-center"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+                    ))}
 
-            </ul>
+                    {/* القائمة المنسدلة للمقالات */}
+                    <li className="mt-4 w-full flex flex-col items-end">
+                        <button
+                            onClick={() => setOpenArticles(!openArticles)}
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white transition"
+                            >
+                            <IoChevronDown
+                                className={`transition-transform duration-300 ${
+                                openArticles ? "rotate-180" : ""
+                                }`}
+                            />{" "}
+                           المقالات
+                        </button>
+
+                        {openArticles && (
+                        <ul className="w-full mt-1 text-right bg-[#4A4A4A] text-white">
+                            {[
+                            { href: "#", label: "!غيرتني الإبادة" },
+                            { href: "+", label: "محاكاة في حلبة المصارعة - القسم الأول" },
+                            { href: "-", label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                            ].map((blogs) => (
+                            <li key={blogs.href}>
+                                <Link
+                                href={blogs.href}
+                                onClick={() => setOpen(false)}
+                                className="block px-4 py-3 hover:bg-gray-100"
+                                >
+                                {blogs.label}
+                                </Link>
+                            </li>
+                            ))}
+                        </ul>
+                        )}
+                    </li>
+                    {links.slice(2).map((link) => (
+                        <li key={link.label}>
+                        <Link
+                            href={link.href}
+                            onClick={() => setOpen(false)}
+                            className="block px-3 py-2 rounded-md hover:bg-[#6B3074] transition"
+                        >
+                            {link.label}
+                        </Link>
+                        </li>
+                    ))}
+                </ul>
+
+            
             {/* التواصل والسوشيال */}
             <div className="text-sm text-center mt-6 border-t border-gray-500 pt-4">
                 <p className="mb-2 flex justify-center gap-2 items-center text-gray-200">
