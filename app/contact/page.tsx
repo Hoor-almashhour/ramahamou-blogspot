@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
 export default function Contact() {
@@ -81,23 +82,21 @@ export default function Contact() {
                 <p className="text-[#5b3b6b] mb-4">
                     أهلاً بك، يسعدنا تواصلك معنا وإرسال اقتراحاتك أو استفساراتك 
                 </p>
-                <p className=" block text-[#7a5d4d] mb-6">
+                <p className="  text-[#7a5d4d] mb-6">
                     
                    
-                  في حال رغبتك بطلب استشارة متخصصة يمكنك التواصل مباشرة عبر الرابط التالي
+                 في حال رغبتك بطلب استشارة متخصصة يمكنك 
+                 التواصل مباشرة عبر الرابط التالي
 
                 </p>
 
-                <div className=" font-bold">
-                    <span className="flex flex-row-reverse text-[#5A5A5A]">:واتساب</span> 
-                    <Link
-                    href="https://wa.me/905347152280"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#BF926B] hover:underline"
-                    >
-                    https://wa.me/905347152280
-                    </Link>
+                <div className=" font-bold flex items-center justify-end gap-4">
+                   <Link href="https://www.instagram.com/rama.yh?utm_source=qr&igsh=MTA2a251d3dvZDNmdg==" className="text-[#7a5d4d] hover:text-[#5b3b6b] transition">
+                    <FaInstagram size={25} />
+                </Link>
+                <Link href="https://wa.me/905347152280" className="text-[#7a5d4d] hover:text-[#5b3b6b] transition">
+                    <FaWhatsapp size={25} />
+                </Link>
                 </div>
            </div>
         </div>

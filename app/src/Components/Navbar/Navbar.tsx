@@ -90,6 +90,7 @@ import { usePathname } from "next/navigation";
                         { href: "#", label: "!غيرتني الإبادة" },
                         { href: "+", label: "محاكاة في حلبة المصارعة - القسم الأول" },
                         { href: "-", label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                        { href: "/archive", label: "الأرشيف" },
                         ].map((blogs) => (
                         <li key={blogs.href}>
                             <Link
@@ -260,17 +261,21 @@ import { usePathname } from "next/navigation";
                 </p>
 
                 <div className="flex justify-center gap-2 text-gray-200">
-                {[FaWhatsapp, FaInstagram].map(
-                    (Icon, i) => (
+                   
                     <Link
-                        key={i}
-                        href="#"
+                       href="https://wa.me/905347152280" 
                         className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition"
                     >
-                        <Icon size={14} />
+                        <FaWhatsapp size={14} />
                     </Link>
-                    )
-                )}
+                    <Link
+                         href="https://www.instagram.com/rama.yh?utm_source=qr&igsh=MTA2a251d3dvZDNmdg=="
+                        className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition"
+                    >
+                       <FaInstagram size={14} />
+                    </Link>
+                    
+                
                 </div>
           </div>
           </div>
