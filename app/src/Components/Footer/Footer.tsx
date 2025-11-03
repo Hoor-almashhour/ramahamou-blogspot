@@ -11,9 +11,9 @@ export default function Footer() {
         <div>
           <h3 className="text-[#C39E71] text-xl font-bold mb-4">آخر المقالات</h3>
           <ul className="space-y-3 text-sm">
-            <li>🌿 <Link href="#" className="hover:underline">غيرتني الإبادة</Link></li>
-            <li>💭 <Link href="#" className="hover:underline">محاكاة في حلبة المصارعة (القسم الأول)</Link></li>
-            <li>📖 <Link href="#" className="hover:underline">محاكاة في حلبة المصارعة (القسم الثاني)</Link></li>
+            <li><Link href="#" className="hover:underline">غيرتني الإبادة</Link></li>
+            <li><Link href="#" className="hover:underline">محاكاة في حلبة المصارعة (القسم الأول)</Link></li>
+            <li><Link href="#" className="hover:underline">محاكاة في حلبة المصارعة (القسم الثاني)</Link></li>
           </ul>
         </div>
 
