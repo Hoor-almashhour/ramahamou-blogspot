@@ -28,7 +28,7 @@ export async function getAllPosts() {
   });
 
   // 🔸 ترتيب المقالات من الأحدث إلى الأقدم
-  posts.sort((a, b) => (a.meta.date < b.meta.date ? 1 : -1));
+  posts.sort((a, b) => (a.meta.date < b.meta.date ? -1 : 1));
 
   return posts;
 }
