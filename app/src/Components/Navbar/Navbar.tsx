@@ -87,9 +87,9 @@ import { usePathname } from "next/navigation";
                         </button>
                     <ul className="absolute right-0 top-full mt-1 w-52 text-right bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                         {[
-                        { href: "#", label: "!غيرتني الإبادة" },
-                        { href: "+", label: "محاكاة في حلبة المصارعة - القسم الأول" },
-                        { href: "-", label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                        { href: "/posts/genocide", label: "!غيرتني الإبادة" },
+                        { href: "/posts/wrestling-part1", label: "محاكاة في حلبة المصارعة - القسم الأول" },
+                        { href: "/posts/wrestling-part2",  label: "محاكاة في حلبة المصارعة - القسم الثاني" },
                         { href: "/archive", label: "الأرشيف" },
                         ].map((blogs) => (
                         <li key={blogs.href}>

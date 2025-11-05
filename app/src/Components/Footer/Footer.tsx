@@ -4,7 +4,7 @@ import { FaWhatsapp, FaInstagram,  } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#4B4B4B] text-white text-right mt-20">
+    <footer className="bg-[#4B4B4B] text-white text-right ">
       {/* القسم العلوي - روابط وتفاصيل */}
       <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
         {/* العمود 1 - آخر المقالات أو نبذة */}

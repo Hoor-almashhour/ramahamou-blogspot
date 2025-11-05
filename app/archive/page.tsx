@@ -1,0 +1,102 @@
+import Link from "next/link";
+import { getCategoriesAndTags, getPostsByCategory, getPostsByTag, getAllPosts } from "@/lib/posts"
+
+type Post = {
+  slug: string;
+  meta: {
+    title: string;
+    date: string;
+    excerpt: string;
+    category?: string;
+    tags?: string[];
+    image?: string;
+  };
+  content: string;
+};
+
+export default async function ArchivePage({
+  searchParams,
+}: {
+  searchParams: { category?: string; tag?: string };
+}) {
+  const { categories, tags } = await getCategoriesAndTags();
+
+  // 🟣 هنا نحدد النوع صراحةً
+  let posts: Post[] = [];
+  let filterTitle = "كل المقالات";
+
+  if (searchParams.category) {
+    posts = await getPostsByCategory(searchParams.category);
+    filterTitle = `تصنيف: ${searchParams.category}`;
+  } else if (searchParams.tag) {
+    posts = await getPostsByTag(searchParams.tag);
+    filterTitle = `وسم: ${searchParams.tag}`;
+  } else {
+    posts = await getAllPosts(); // نعرض الكل افتراضيًا
+  }
+
+  return (
+    <section className="max-w-5xl mx-auto px-4 py-32 text-right">
+      <h1 className="text-3xl font-bold text-[#C39E71] mb-8">الأرشيف</h1>
+
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* العمود الجانبي */}
+        <aside className="md:w-1/3">
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold mb-3 text-ramaPurple">التصنيفات</h2>
+            <ul className="space-y-2">
+              {categories.map((cat) => (
+                <li key={cat}>
+                  <Link
+                    href={`/archive?category=${encodeURIComponent(cat)}`}
+                    className="text-ramaGold hover:underline"
+                  >
+                    {cat}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold mb-3 text-ramaPurple">الوسوم</h2>
+            <div className="flex flex-wrap items-center justify-end gap-2">
+              {tags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/archive?tag=${encodeURIComponent(tag)}`}
+                  className="bg-ramaBeige border border-ramaGold text-ramaPurple px-3 py-1 rounded-full text-sm hover:bg-ramaGold hover:text-white transition"
+                >
+                  {tag}#
+                </Link>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        {/* قائمة المقالات */}
+        <main className="flex-1">
+          <h2 className="text-2xl font-semibold text-ramaPurple mb-4">{filterTitle}</h2>
+          {posts.length === 0 ? (
+            <p className="text-gray-500">اختر تصنيفًا أو وسمًا لعرض المقالات.</p>
+          ) : (
+            <ul className="space-y-4">
+              {posts.map((p) => (
+                <li
+                  key={p.slug}
+                  className="p-4 bg-white rounded shadow hover:shadow-md transition"
+                >
+                  <Link href={`/posts/${p.slug}`}>
+                    <h3 className="text-lg font-bold text-ramaPurple mb-1">{p.meta.title}</h3>
+                    <p className="text-sm text-gray-500 mb-2">{p.meta.date}</p>
+                    <p className="text-gray-700 line-clamp-2">{p.meta.excerpt}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </main>
+      </div>
+    </section>
+  );
+}
