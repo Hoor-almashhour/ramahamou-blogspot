@@ -1,5 +1,5 @@
 import { getAllPosts, getCategoriesAndTags } from "@/lib/posts";
-
+import Image from "next/image";
 import Link from "next/link";
 import Hero from "./src/Components/Hero/Hero";
 import PostCard from "./src/Components/PostCard/PostCard";
@@ -43,7 +43,7 @@ export default async function Home() {
             href="/archive"
             className="inline-block bg-[#C39E71]   text-white  px-6 py-2 rounded-full hover:bg-[#c1935a]  transition"
           >
-            تصفح جميع المقالات
+             جميع المقالات
           </Link>
         </div>
       </section>
@@ -88,11 +88,15 @@ export default async function Home() {
         <h3 className="text-2xl font-bold text-ramaPurple mb-6">📷 لقطات من المقالات</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {posts.slice(0, 8).map((p) => (
-            <img
+            <Image
               key={p.slug}
               src={p.meta.image || "/images/placeholder.jpg"}
               alt={p.meta.title}
-              className="w-full h-40 object-cover rounded-2xl shadow hover:opacity-80 transition"
+              width={400}
+              height={300}
+              className="w-full h-40 object-cover rounded-2xl cursor-pointer shadow hover:opacity-80 transition"
+              sizes="(max-width: 768px) 100vw, 33vw"
+               unoptimized
             />
           ))}
         </div>
