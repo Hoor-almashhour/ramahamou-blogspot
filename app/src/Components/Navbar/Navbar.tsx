@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 
 
     const links = [
-    { href: "/", label: "الرئيسية", icon: <TiHome  className="text-[#C39E71]" /> },
+    { href: "/", label: "الرئيسية", icon: <TiHome className=" text-[#C39E71]  hover:text-white" /> },
     { href: "/thoughts", label: "خواطر" },
     { href: "/stories", label: "قصص" },
     { href: "/about", label: " عن راما" },
@@ -75,7 +75,7 @@ import { usePathname } from "next/navigation";
                         className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-colors duration-300 ${
                         pathname === link.href
                             ? "bg-[#6B3074] text-white"
-                            : "text-[#6B3074] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
+                            : "text-[#C39E71] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
                         }`}
                         >
                         {link.label}
@@ -104,7 +104,7 @@ import { usePathname } from "next/navigation";
                             className={`block px-4 py-3 rounded-md transition-all duration-300 ${
                                 pathname === blogs.href
                                     ? "bg-[#6B3074] text-white font-semibold"
-                                    : "text-[#6B3074] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
+                                    : "text-[#C39E71] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
                                 }`}
                                 >
                             {blogs.label}
@@ -120,7 +120,7 @@ import { usePathname } from "next/navigation";
                         className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-colors duration-300 ${
                             pathname === link.href
                                 ? "bg-[#6B3074] text-white"
-                                : "text-[#6B3074] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
+                                : "text-[#C39E71] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
                             }`}
                          >
                         {link.label}

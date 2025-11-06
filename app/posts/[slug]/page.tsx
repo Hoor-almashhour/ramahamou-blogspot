@@ -28,13 +28,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 alt={post.meta.title} 
                 width={400}
                 height={300}
-                className=" mb-3"
+                className=" mb-3 mx-auto"
                 sizes="(max-width: 768px) 100vw, 33vw"
                 unoptimized
             />
       </div>
      
-      <div className="prose prose-lg rtl text-gray-800 leading-relaxed">
+      <div className="prose prose-lg placeholder-rose-300 text-right leading-relaxed mx-auto ">
         <Markdown>{post.content}</Markdown>
       </div>
     </article>
