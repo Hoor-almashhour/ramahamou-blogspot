@@ -9,7 +9,7 @@ type Post = {
     excerpt: string;
     category?: string;
     tags?: string[];
-    image?: string;
+    image: string;
   };
   content: string;
 };

@@ -96,6 +96,7 @@ export default async function Home() {
               height={300}
               className="w-full h-40 object-cover rounded-2xl cursor-pointer shadow hover:opacity-80 transition"
               sizes="(max-width: 768px) 100vw, 33vw"
+              unoptimized
             />
           ))}
         </div>
