@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getCategoriesAndTags, getPostsByCategory, getPostsByTag, getAllPosts } from "@/lib/posts"
 
 type Post = {
@@ -36,10 +37,10 @@ export default async function ArchivePage({
   }
 
   return (
-    <section className="max-w-5xl mx-auto px-4 py-32 text-right">
+    <section className="max-w-7xl mx-auto px-4 py-32 text-right">
       <h1 className="text-3xl font-bold text-[#C39E71] mb-8">الأرشيف</h1>
 
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col-reverse justify-center items-center md:flex-row  md:justify-start md:items-start  gap-8">
         {/* العمود الجانبي */}
         <aside className="md:w-1/3">
           <div className="mb-6">
@@ -75,21 +76,30 @@ export default async function ArchivePage({
         </aside>
 
         {/* قائمة المقالات */}
-        <main className="flex-1">
-          <h2 className="text-2xl font-semibold text-ramaPurple mb-4">{filterTitle}</h2>
+        <main className="flex-1 ">
+          <h2 className="text-2xl font-semibold text-black mb-4">{filterTitle}</h2>
           {posts.length === 0 ? (
             <p className="text-gray-500">اختر تصنيفًا أو وسمًا لعرض المقالات.</p>
           ) : (
-            <ul className="space-y-4">
+            <ul className="space-y-4 flex  flex-col md:items-end md:justify-end ">
               {posts.map((p) => (
                 <li
                   key={p.slug}
-                  className="p-4 bg-white rounded shadow hover:shadow-md transition"
+                  className="p-4 bg-white max-w-2xl md:w-2xl  rounded shadow hover:shadow-md transition "
                 >
                   <Link href={`/posts/${p.slug}`}>
-                    <h3 className="text-lg font-bold text-ramaPurple mb-1">{p.meta.title}</h3>
-                    <p className="text-sm text-gray-500 mb-2">{p.meta.date}</p>
-                    <p className="text-gray-700 line-clamp-2">{p.meta.excerpt}</p>
+                    <Image 
+                            src={p.meta.image}
+                            alt={p.meta.title} 
+                            width={400}
+                            height={400}
+                            className="mx-auto mb-4 "
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            unoptimized
+                        />
+                        <h3 className="text-lg font-bold text-ramaPurple mb-1">{p.meta.title}</h3>
+                        <p className="text-sm text-gray-500 mb-2">{p.meta.date}</p>
+                        <p className="text-gray-700 line-clamp-2">{p.meta.excerpt}</p>
                   </Link>
                 </li>
               ))}
