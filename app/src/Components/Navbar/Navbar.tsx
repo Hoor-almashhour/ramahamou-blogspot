@@ -68,11 +68,14 @@ import { usePathname } from "next/navigation";
             </Link>
             <ul className="hidden  md:flex flex-row-reverse  gap-8 text-[#C39E71] font-medium relative">
                     {links.slice(0, 2).map((link) => ( 
+                        
                     <li key={link.label}>
                         <Link
                         href={link.href}
-                        className={`flex items-center gap-1  px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white ${
-                            pathname === link.href ? "text-[#C39E71]" : ""
+                        className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-colors duration-300 ${
+                        pathname === link.href
+                            ? "bg-[#6B3074] text-white"
+                            : "text-[#6B3074] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
                         }`}
                         >
                         {link.label}
@@ -85,23 +88,25 @@ import { usePathname } from "next/navigation";
                         <button className="flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white">
                             <IoChevronDown />  المقالات
                         </button>
-                    <ul className="absolute right-0 top-full mt-1 w-52 text-right bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <ul className="absolute right-0 top-full mt-1 w-64 text-right text-sm bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                         {[
-                        { href: "/posts/genocide", label: "!غيرتني الإبادة" },
-                        { href: "/posts/wrestling-part1", label: "محاكاة في حلبة المصارعة - القسم الأول" },
-                        { href: "/posts/wrestling-part2",  label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                        { href: "/posts/genocide" , label: "!غيرتني الإبادة" },
+                        { href: "/posts/muhakama-fi-halbat-al-musar'a1", label: "محاكاة في حلبة المصارعة - القسم الأول" },
+                        { href: "/posts/muhakama-fi-halbat-al-musar'a",  label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                        { href: "/posts/alhkum",  label: "الحكم المنصف، بين الحقيقة والوهم" },
+                        { href: "/posts/mahter",  label: "مهاتير محمد" },
+                        { href: "/posts/kaser",  label: " في أروقة القصر" },
                         { href: "/archive", label: "الأرشيف" },
                         ].map((blogs) => (
                         <li key={blogs.href}>
                             <Link
                             href={blogs.href}
-                            className={`block px-4 py-4 rounded-md transition-all duration-200
-                                ${
+                            className={`block px-4 py-3 rounded-md transition-all duration-300 ${
                                 pathname === blogs.href
-                                    ? "text-[#C39E71] font-semibold"
-                                    : "text-[#C39E71] hover:bg-gray-200 hover:text-[#6B3074]"
+                                    ? "bg-[#6B3074] text-white font-semibold"
+                                    : "text-[#6B3074] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
                                 }`}
-                            >
+                                >
                             {blogs.label}
                             </Link>
                         </li>
@@ -112,10 +117,12 @@ import { usePathname } from "next/navigation";
                     <li key={link.label}>
                         <Link
                         href={link.href}
-                        className={`flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white ${
-                            pathname === link.href ? "text-[#C39E71]" : ""
-                        }`}
-                        >
+                        className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-colors duration-300 ${
+                            pathname === link.href
+                                ? "bg-[#6B3074] text-white"
+                                : "text-[#6B3074] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
+                            }`}
+                         >
                         {link.label}
                         </Link>
                     </li>
@@ -218,11 +225,15 @@ import { usePathname } from "next/navigation";
                         </button>
 
                         {openArticles && (
-                        <ul className="w-full mt-1 text-right bg-[#4A4A4A] text-white">
+                        <ul className="w-full mt-1 text-sm text-right bg-[#4A4A4A] text-white">
                             {[
-                            { href: "#", label: "!غيرتني الإبادة" },
-                            { href: "+", label: "محاكاة في حلبة المصارعة - القسم الأول" },
-                            { href: "-", label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                             { href: "/posts/genocide" , label: "!غيرتني الإبادة" },
+                            { href: "/posts/muhakama-fi-halbat-al-musar'a1", label: "محاكاة في حلبة المصارعة - القسم الأول" },
+                            { href: "/posts/muhakama-fi-halbat-al-musar'a",  label: "محاكاة في حلبة المصارعة - القسم الثاني" },
+                            { href: "/posts/alhkum",  label: "الحكم المنصف، بين الحقيقة والوهم" },
+                            { href: "/posts/mahter",  label: "مهاتير محمد" },
+                            { href: "/posts/kaser",  label: " في أروقة القصر" },
+                            { href: "/archive", label: "الأرشيف" },
                             ].map((blogs) => (
                             <li key={blogs.href}>
                                 <Link

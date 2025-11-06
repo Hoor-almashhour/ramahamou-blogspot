@@ -8,7 +8,8 @@ const postsDir = path.join(process.cwd(), "content", "posts");
 export async function getAllPosts() {
   const files = fs.readdirSync(postsDir);
   const posts = files.map((filename) => {
-    const slug = filename.replace(/\.md$/, "");
+    // إزالة التاريخ من بداية الاسم (مثل 2025-10-07-)
+    const slug = filename.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
     const filePath = path.join(postsDir, filename);
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(raw);
@@ -28,16 +29,26 @@ export async function getAllPosts() {
   });
 
   // 🔸 ترتيب المقالات من الأحدث إلى الأقدم
-  posts.sort((a, b) => (a.meta.date < b.meta.date ? -1 : 1));
+  posts.sort((a, b) => (a.meta.date < b.meta.date ? 1 : -1));
 
   return posts;
 }
 
 // 🟣 جلب مقال واحد حسب slug
 export async function getPostBySlug(slug: string) {
-  const filePath = path.join(postsDir, `${slug}.md`);
-  if (!fs.existsSync(filePath)) return null;
+  // ابحث عن الملف الذي ينتهي بـ `${slug}.md` أو يحتوي على `-${slug}.md`
+  const filename = fs
+    .readdirSync(postsDir)
+    .find(
+      (f) =>
+        f === `${slug}.md` ||
+        f.endsWith(`-${slug}.md`) ||
+        f.includes(`-${slug}.md`)
+    );
 
+  if (!filename) return null;
+
+  const filePath = path.join(postsDir, filename);
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
 
