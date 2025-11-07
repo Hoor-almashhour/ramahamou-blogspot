@@ -8,6 +8,8 @@ import Footer from "./src/Components/Footer/Footer";
 const cairo = Cairo({ 
   subsets: ['arabic'],
   weight: ["400", "700"],
+  display: "swap", 
+  variable: "--font-cairo",
  })
 
 export const metadata: Metadata = {
@@ -21,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl" className={cairo.variable}>
        <body className={cairo .className}
       >
           <Navbar />

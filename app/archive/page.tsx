@@ -40,7 +40,7 @@ export default async function ArchivePage({
     <section className="max-w-7xl mx-auto px-4 py-32 text-right">
       <h1 className="text-3xl font-bold text-[#C39E71] mb-8">الأرشيف</h1>
 
-      <div className="flex flex-col-reverse justify-center items-center md:flex-row  md:justify-start md:items-start  gap-8">
+      <div className="flex flex-col-reverse justify-center items-center md:flex-row-reverse  md:justify-start md:items-start  gap-8">
         {/* العمود الجانبي */}
         <aside className="md:w-1/3">
           <div className="mb-6">
