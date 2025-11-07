@@ -20,7 +20,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   if (!post) return notFound();
 
   return (
-    <section className="bg-[#fdf8f6] min-h-screen py-24 px-4">
+    <section className="bg-[#fdf8f6] min-h-screen py-40 px-4">
       <article className="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 md:p-10 text-right leading-loose font-[Noto_Naskh_Arabic] text-[#333]">
         {/* عنوان المقال */}
         <h1 className="text-3xl font-bold text-[#6B3074] mb-6 text-center">{post.meta.title}</h1>

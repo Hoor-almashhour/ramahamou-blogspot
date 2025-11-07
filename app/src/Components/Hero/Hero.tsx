@@ -9,9 +9,15 @@ const Hero = () => {
 
         {/* Logo */}
         <div>
-            <Link href="/" className="text-lg font-extrabold text-[#C39E71]">
-                رامه حمو
-            </Link>
+            <Image
+                src="/logo/logo.png"
+                alt="logo"
+                width={240}
+                height={140}
+                className="object-cover text-3xl"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                unoptimized
+            />
         </div>
         
          {/* شعار الموقع */}

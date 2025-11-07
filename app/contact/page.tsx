@@ -23,8 +23,8 @@ export default function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-[#f8f3ee] to-white flex flex-col items-center py-32 px-9">
-      <h2 className="text-4xl font-bold text-[#652A7A] mb-16 flex items-center flex-row-reverse gap-2">
+    <section className="min-h-screen bg-gradient-to-b from-[#f8f3ee] to-white flex flex-col items-center py-36 px-8">
+      <h2 className="text-4xl font-bold text-[#652A7A] mb-16 flex items-center flex-row-reverse gap-2 mt-10">
         <span ><IoMdMail className="text-[#C8485F]" /></span> تواصل معنا
       </h2>
 

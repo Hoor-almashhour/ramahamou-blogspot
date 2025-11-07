@@ -11,9 +11,9 @@ export default function Footer() {
         <div>
           <h3 className="text-[#C39E71] text-xl font-bold mb-4">آخر المقالات</h3>
           <ul className="space-y-3 text-sm">
-            <li><Link href="#" className="hover:underline">غيرتني الإبادة</Link></li>
-            <li><Link href="#" className="hover:underline">محاكاة في حلبة المصارعة (القسم الأول)</Link></li>
-            <li><Link href="#" className="hover:underline">محاكاة في حلبة المصارعة (القسم الثاني)</Link></li>
+            <li><Link href="/posts/genocide" className="hover:underline">غيرتني الإبادة</Link></li>
+            <li><Link href="/posts/muhakama-fi-halbat-al-musar'a1" className="hover:underline">محاكاة في حلبة المصارعة (القسم الأول)</Link></li>
+            <li><Link href="/posts/muhakama-fi-halbat-al-musar'a" className="hover:underline">محاكاة في حلبة المصارعة (القسم الثاني)</Link></li>
           </ul>
         </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
         {/* العمود 3 - روابط سريعة */}
         <div className="flex flex-col gap-2 text-sm font-medium">
           <h3 className="text-[#C39E71] text-xl font-bold mb-4">روابط سريعة</h3>
-          <Link href="/articles" className="hover:underline">📚 المقالات</Link>
+          <Link href="/posts" className="hover:underline">📚 المقالات</Link>
           <Link href="/archive" className="hover:underline">🗂️ الأرشيف</Link>
           <Link href="/contact" className="hover:underline">✉️ تواصل معنا</Link>
         </div>

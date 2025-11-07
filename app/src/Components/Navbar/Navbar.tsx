@@ -3,6 +3,7 @@ import { FaWhatsapp,  FaInstagram, FaSearch } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { TiHome } from "react-icons/ti";
 import { IoChevronDown } from "react-icons/io5";
@@ -60,12 +61,18 @@ import { usePathname } from "next/navigation";
       </div>
 
       {/* Main Navbar */}
-        <nav className="fixed w-full  bg-[#FFFFFF] backdrop-blur-md ">
+        <nav className="fixed w-full  bg-[#FFFFFF]">
         <div className=" md:mx-11 flex flex-row-reverse justify-between items-center p-4">
             {/* Logo */}
-            <Link href="/" className="text-2xl font-serif text-[#C39E71]">
-            رامه حمو
-            </Link>
+            <Image
+                 src="/logo/logo.png"
+                alt="logo"
+                width={170}
+                height={100}
+                className="object-cover text-3xl"
+                sizes="(max-width: 768px) 100vw, 33vw"
+                unoptimized
+            />
             <ul className="hidden  md:flex flex-row-reverse  gap-8 text-[#C39E71] font-medium relative">
                     {links.slice(0, 2).map((link) => ( 
                         

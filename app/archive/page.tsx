@@ -37,7 +37,7 @@ export default async function ArchivePage({
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-32 text-right">
+    <section className="max-w-7xl mx-auto px-4 py-36 text-right">
       <h1 className="text-3xl font-bold text-[#C39E71] mb-8">الأرشيف</h1>
 
       <div className="flex flex-col-reverse justify-center items-center md:flex-row-reverse  md:justify-start md:items-start  gap-8">
