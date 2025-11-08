@@ -90,7 +90,7 @@ export default function Contact() {
 
                 </p>
 
-                <div className=" font-bold flex items-center justify-end gap-4">
+                <div className=" font-bold flex items-center justify-start gap-4">
                    <Link href="https://www.instagram.com/rama.yh?utm_source=qr&igsh=MTA2a251d3dvZDNmdg==" className="text-[#7a5d4d] hover:text-[#5b3b6b] transition">
                     <FaInstagram size={25} />
                 </Link>
