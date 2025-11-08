@@ -7,7 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { TiHome } from "react-icons/ti";
 import { IoChevronDown } from "react-icons/io5";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
+type SearchResult = {
+  title: string;
+  href: string;
+  content: string;
+};
+
 
  const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -15,7 +22,11 @@ import { usePathname } from "next/navigation";
     const [showSearch, setShowSearch] = useState(false);
      const [openArticles, setOpenArticles] = useState(false);
     const [query, setQuery] = useState("");
+    const router = useRouter();
+    const [results, setResults] = useState<SearchResult[]>([]);
+    
 
+   
 
     const links = [
     { href: "/", label: "الرئيسية", icon: <TiHome className=" text-[#C39E71]  hover:text-white" /> },
@@ -30,7 +41,7 @@ import { usePathname } from "next/navigation";
     <>
       {/* Top Contact Bar */}
        <div className="hidden md:block w-full bg-[#dec6da] text-[#827382] text-sm py-3">
-          <div className=" mx-14 flex flex-row-reverse justify-start  items-start gap-4">
+          <div className=" mx-14 flex flex-row justify-start  items-start gap-4">
         
                 {/* Left side - Contact info */}
                 <div className="flex items-center flex-row-reverse gap-3">
@@ -73,13 +84,13 @@ import { usePathname } from "next/navigation";
                 sizes="(max-width: 768px) 100vw, 33vw"
                 unoptimized
             />
-            <ul className="hidden  md:flex flex-row-reverse  gap-8 text-[#C39E71] font-medium relative">
+            <ul className="hidden  md:flex flex-row  gap-8 text-[#C39E71] font-medium relative">
                     {links.slice(0, 2).map((link) => ( 
                         
                     <li key={link.label}>
                         <Link
                         href={link.href}
-                        className={`flex items-center gap-1 px-4 py-2 rounded-lg transition-colors duration-300 ${
+                        className={`flex items-center flex-row-reverse gap-1 px-4 py-2 rounded-lg transition-colors duration-300 ${
                         pathname === link.href
                             ? "bg-[#6B3074] text-white"
                             : "text-[#C39E71] hover:bg-[#6B3074]/10 hover:text-[#6B3074]"
@@ -92,7 +103,7 @@ import { usePathname } from "next/navigation";
                 ))}
                     {/*القائمة المنسدلة للمقالات */}
                     <li className="relative group">
-                        <button className="flex items-center gap-1 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white">
+                        <button className="flex items-center  flex-row-reverse gap-1 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white">
                             <IoChevronDown />  المقالات
                         </button>
                     <ul className="absolute right-0 top-full mt-1 w-64 text-right text-sm bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
@@ -137,25 +148,58 @@ import { usePathname } from "next/navigation";
                 </ul>
               
                 {/* 🔍 Search Button */}
-                <div className="hidden md:flex items-center relative">
+                <div className="hidden md:flex items-center  relative">
                     <button
                         onClick={() => setShowSearch(!showSearch)}
-                        className="cursor-pointer flex items-center justify-center w-8 h-8 rounded-full hover:bg-[#6B3074] hover:text-white transition"
+                        className="cursor-pointer flex items-center  justify-center w-8 h-8 rounded-full hover:bg-[#6B3074] hover:text-white transition"
                     >
                         <FaSearch />
                     </button>
-
                     {showSearch && (
-                        <input
-                        type="text"
-                        placeholder="...بحث"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        className="absolute left-0 top-10 w-52 px-3 py-2 rounded-lg border border-[#C39E71] text-right text-[#6B3074] bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#C39E71] transition-all duration-300"
-                        />
-                        
-                        
-                    )}
+                        <div className="absolute right-0 top-10 w-64 bg-white rounded-lg shadow-lg border border-[#C39E71] p-2 text-right z-50">
+                            <input
+                            type="text"
+                            placeholder="بحث..."
+                            value={query}
+                            onChange={async (e) => {
+                                const q = e.target.value;
+                                setQuery(q);
+
+                                if (q.trim() !== "") {
+                                const res = await fetch(`/api/search?query=${encodeURIComponent(q)}`);
+                                const data = await res.json();
+                                setResults(data);
+                                } else {
+                                setResults([]);
+                                }
+                            }}
+                            className="w-full px-3 py-2 rounded-lg border border-[#C39E71] text-right text-[#6B3074] bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#C39E71] mb-2"
+                            />
+
+                            {/* 🔍 نتائج البحث الفعلية */}
+                            {query.trim() !== "" && results.length > 0 && (
+                            <ul className="max-h-60 overflow-y-auto">
+                                {results.map((post: SearchResult) => (
+                                <li key={post.href}>
+                                    <Link
+                                    href={post.href}
+                                    onClick={() => {
+                                        setQuery("");
+                                        setShowSearch(false);
+                                    }}
+                                    className="block px-3 py-2 text-[#C39E71] hover:bg-[#6B3074]/10 hover:text-[#6B3074] rounded-md transition"
+                                    >
+                                    {post.title}
+                                    </Link>
+                                </li>
+                                ))}
+                            </ul>
+                            )}
+                             {query.trim() !== "" && results.length === 0 && (
+                              <p className="px-3 py-2 text-gray-400">لا توجد نتائج</p>
+                            )}
+                        </div>
+                        )}
                 </div>
 
                {/* Mobile Menu Button */}
@@ -177,17 +221,62 @@ import { usePathname } from "next/navigation";
                 
            </div>
             {/* مربع البحث في الموبايل */}
-                {showSearch && (
-                <div className="md:hidden px-6 pb-3">
-                    <input
-                    type="text"
-                    placeholder="...بحث"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    className="w-full px-4 py-2 border border-[#C39E71] rounded-lg text-right text-[#6B3074] focus:outline-none focus:ring-2 focus:ring-[#C39E71]"
-                    />
-                </div>
-             )}
+             
+            {showSearch && (
+            <div className="md:hidden px-6 pb-3 relative">
+                <input
+                type="text"
+                placeholder="بحث..."
+                value={query}
+                onChange={async (e) => {
+                    const q = e.target.value;
+                    setQuery(q);
+
+                    if (q.trim() !== "") {
+                    try {
+                        const res = await fetch(`/api/search?query=${encodeURIComponent(q)}`);
+                        const data = await res.json();
+                        setResults(data);
+                    } catch (err) {
+                        console.error(err);
+                        setResults([]);
+                    }
+                    } else {
+                    setResults([]);
+                    }
+                }}
+                className="w-full px-4 py-2 border border-[#C39E71] rounded-lg text-right text-[#6B3074] bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#C39E71]"
+                />
+
+                {/* 🔍 قائمة النتائج في الموبايل */}
+                {query.trim() !== "" && (
+                <ul className="absolute w-full mt-2 max-h-60 overflow-y-auto bg-white border border-[#C39E71] rounded-lg shadow-lg z-50">
+                    {results.length > 0 ? (
+                    results.map((post: SearchResult) => (
+                        <li key={post.href}>
+                        <Link
+                            href={post.href}
+                            onClick={() => {
+                            setQuery("");
+                            setShowSearch(false);
+                            setOpen(false);
+                            }}
+                            className="block px-4 py-2 text-[#C39E71] hover:bg-[#6B3074]/10 hover:text-[#6B3074] rounded-md transition text-right"
+                        >
+                            {post.title}
+                        </Link>
+                        </li>
+                    ))
+                    ) : (
+                    <li className="px-4 py-2 text-gray-400 text-right">
+                        لا توجد نتائج
+                    </li>
+                    )}
+                </ul>
+                )}
+            </div>
+            )}
+
         </nav>
          {/* القائمة الجانبية في الموبايل */}
         {open && (
@@ -203,7 +292,7 @@ import { usePathname } from "next/navigation";
                 <h2 className="text-center mb-6 font-semibold text-lg">
                  راما حمو
                 </h2>
-                <ul className="space-y-3 flex flex-col items-end font-semibold text-lg">
+                <ul className="space-y-3 flex flex-col items-start font-semibold text-lg">
                     
                     {links.slice(0, 2).map((link) => (
                         <li key={link.label}>
@@ -218,10 +307,10 @@ import { usePathname } from "next/navigation";
                     ))}
 
                     {/* القائمة المنسدلة للمقالات */}
-                    <li className="mt-4 w-full flex flex-col items-end">
+                    <li className="mt-4 w-full flex flex-col items-start">
                         <button
                             onClick={() => setOpenArticles(!openArticles)}
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white transition"
+                            className="flex items-center flex-row-reverse gap-2 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white transition"
                             >
                             <IoChevronDown
                                 className={`transition-transform duration-300 ${
@@ -269,33 +358,33 @@ import { usePathname } from "next/navigation";
                 </ul>
 
             
-            {/* التواصل والسوشيال */}
-            <div className="text-sm text-center mt-6 border-t border-gray-500 pt-4">
-                <p className="mb-2 flex justify-center gap-2 items-center text-gray-200">
-                <MdEmail />  ramahamou.blogspot.com
-                </p>
-                <p className="mb-3 flex justify-center gap-2 items-center text-gray-200">
-                <FaWhatsapp />  +905347152280
-                </p>
+                {/* التواصل والسوشيال */}
+                <div className="text-sm text-center mt-6 border-t border-gray-500 pt-4">
+                    <p className="mb-2 flex justify-center flex-row-reverse gap-2 items-center text-gray-200">
+                      <MdEmail />  ramahamou.blogspot.com
+                    </p>
+                    <p dir="ltr" className="mb-3 flex justify-center flex-row gap-2 items-center text-gray-200">
+                      <FaWhatsapp  />  +905347152280
+                    </p>
 
-                <div className="flex justify-center gap-2 text-gray-200">
-                   
-                    <Link
-                       href="https://wa.me/905347152280" 
-                        className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition"
-                    >
-                        <FaWhatsapp size={14} />
-                    </Link>
-                    <Link
-                         href="https://www.instagram.com/rama.yh?utm_source=qr&igsh=MTA2a251d3dvZDNmdg=="
-                        className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition"
-                    >
-                       <FaInstagram size={14} />
-                    </Link>
+                    <div className="flex justify-center gap-2 text-gray-200">
                     
-                
+                        <Link
+                        href="https://wa.me/905347152280" 
+                            className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition"
+                        >
+                            <FaWhatsapp size={14} />
+                        </Link>
+                        <Link
+                            href="https://www.instagram.com/rama.yh?utm_source=qr&igsh=MTA2a251d3dvZDNmdg=="
+                            className="p-1 border border-gray-500 rounded-md hover:bg-[#6B3074] hover:text-white transition"
+                        >
+                        <FaInstagram size={14} />
+                        </Link>
+                        
+                    
+                    </div>
                 </div>
-          </div>
           </div>
 
           
