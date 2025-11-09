@@ -84,7 +84,7 @@ type SearchResult = {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 unoptimized
             />
-            <ul className="hidden  md:flex flex-row  gap-8 text-[#C39E71] font-medium relative">
+            <ul className="hidden  md:flex flex-row-reverse  gap-8 text-[#C39E71] font-medium relative">
                     {links.slice(0, 2).map((link) => ( 
                         
                     <li key={link.label}>

@@ -1,8 +1,38 @@
 "use client";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FaWhatsapp, FaInstagram,  } from "react-icons/fa";
 
 export default function Footer() {
+        const [posts, setPosts] = useState<{ title: string; date: string; href: string }[]>([]);
+        const [selectedMonth, setSelectedMonth] = useState("");
+        const [filteredPosts, setFilteredPosts] = useState<
+            { title: string; date: string; href: string }[]
+        >([]);
+
+        useEffect(() => {
+            const fetchPosts = async () => {
+            const res = await fetch("api/archive");
+            const data = await res.json();
+            setPosts(data);
+            };
+            fetchPosts();
+        }, []);
+
+        const months = [
+            "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+            "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+        ];
+        const handleMonthSelect = (monthIndex: number) => {
+           setSelectedMonth(months[monthIndex]);
+            const filtered = posts.filter((post) => {
+            const date = new Date(post.date);
+            return date.getMonth() === monthIndex;
+            });
+            setFilteredPosts(filtered);
+        };
+
+
   return (
     <footer className="bg-[#4B4B4B] text-white text-right ">
       {/* القسم العلوي - روابط وتفاصيل */}
@@ -18,15 +48,38 @@ export default function Footer() {
         </div>
 
         {/* العمود 2 - الأرشيف */}
-        <div>
+          <div>
           <h3 className="text-[#C39E71] text-xl font-bold mb-4">الأرشيف</h3>
-          <select dir="rtl" className="w-full cursor-pointer text-gray-800 border-2 bg-white border-white rounded-md px-2 py-1 focus:outline-[#C39E71]">
-            <option>اختر شهر</option>
-            <option>نوفمبر 2025</option>
-            <option>أكتوبر 2025</option>
+          <select
+            dir="rtl"
+            onChange={(e) => handleMonthSelect(parseInt(e.target.value))}
+            className="w-full cursor-pointer text-gray-800 border-2 bg-white border-white rounded-md px-2 py-1 focus:outline-[#C39E71]"
+          >
+            <option value="">اختر شهر</option>
+            {months.map((month, index) => (
+              <option key={month} value={index}>
+                {month} 2025
+              </option>
+            ))}
           </select>
 
+          {/* عرض المقالات */}
+          {filteredPosts.length > 0 && (
+            <ul className="mt-3 space-y-2 text-sm bg-white/10 rounded-md p-3">
+              {filteredPosts.map((post) => (
+                <li key={post.href}>
+                  <Link
+                    href={post.href}
+                    className="text-[#dec6da] hover:text-[#C39E71] transition"
+                  >
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+     
 
         {/* العمود 3 - روابط سريعة */}
         <div className="flex flex-col gap-2 text-sm font-medium">
