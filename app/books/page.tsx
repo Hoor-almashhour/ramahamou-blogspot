@@ -1,5 +1,5 @@
-export default function ThoughtsPage() {
-  const thoughts = [
+export default function BooksPage() {
+  const books = [
     {
       id: 1,
       title: "عن البدايات 🌱",
@@ -35,19 +35,19 @@ export default function ThoughtsPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-36 text-right">
-      <h1 className="text-3xl font-bold text-[#6B3074] mb-8 text-center">خواطر ✨</h1>
+      <h1 className="text-3xl font-bold text-[#6B3074] mb-8 text-center">كتب✨</h1>
 
       <div className="grid gap-6 justify-center sm:grid-cols-2">
-        {thoughts.map((thought) => (
+        {books.map((book) => (
           <div
-            key={thought.id}
+            key={book.id}
             className="border border-[#C39E71] rounded-2xl p-5 bg-white/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
           >
             <h2 className="text-xl font-semibold text-[#6B3074] mb-2">
-              {thought.title}
+              {book.title}
             </h2>
-            <p className="text-[#827382] mb-3 leading-relaxed">{thought.text}</p>
-            <p className="text-sm text-[#A19282]">{thought.date}</p>
+            <p className="text-[#827382] mb-3 leading-relaxed">{book.text}</p>
+            <p className="text-sm text-[#A19282]">{book.date}</p>
           </div>
         ))}
       </div>

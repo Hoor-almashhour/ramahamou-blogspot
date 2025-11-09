@@ -1,5 +1,5 @@
-export default function StoriesPage() {
-  const stories = [
+export default function ViewPage() {
+  const views = [
     {
       id: 1,
       title: "ظلّ القمر 🌙",
@@ -32,21 +32,21 @@ export default function StoriesPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-36 text-right">
-      <h1 className="text-3xl font-bold text-[#6B3074] mb-8 text-center">قصص ✨</h1>
+      <h1 className="text-3xl font-bold text-[#6B3074] mb-8 text-center">مشاهد✨</h1>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        {stories.map((story) => (
+        {views.map((view) => (
           <div
-            key={story.id}
+            key={view.id}
             className="border border-[#C39E71] rounded-2xl p-6 bg-white/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
           >
             <h2 className="text-xl font-semibold text-[#6B3074] mb-2">
-              {story.title}
+              {view.title}
             </h2>
             <p className="text-[#827382] mb-3 leading-relaxed">
-              {story.description}
+              {view.description}
             </p>
-            <p className="text-sm text-[#A19282]">{story.date}</p>
+            <p className="text-sm text-[#A19282]">{view.date}</p>
           </div>
         ))}
       </div>

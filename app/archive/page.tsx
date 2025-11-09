@@ -68,7 +68,7 @@ export default async function ArchivePage({
                   href={`/archive?tag=${encodeURIComponent(tag)}`}
                   className="bg-ramaBeige border border-ramaGold text-ramaPurple px-3 py-1 rounded-full text-sm hover:bg-ramaGold hover:text-white transition"
                 >
-                  {tag}#
+                  #{tag}
                 </Link>
               ))}
             </div>

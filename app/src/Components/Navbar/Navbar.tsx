@@ -30,8 +30,8 @@ type SearchResult = {
 
     const links = [
     { href: "/", label: "الرئيسية", icon: <TiHome className=" text-[#C39E71]  hover:text-white" /> },
-    { href: "/thoughts", label: "كتب" },
-    { href: "/stories", label: "مشاهد" },
+    { href: "/books", label: "كتب" },
+    { href: "/view", label: "مشاهد" },
     { href: "/about", label: "عن رامة" },
     { href: "/contact", label: "تواصل معنا" },
   ];
@@ -108,7 +108,7 @@ type SearchResult = {
                         </button>
                     <ul className="absolute right-0 top-full mt-1 w-64 text-right text-sm bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                         {[
-                        { href: "/posts/genocide" , label: "!غيرتني الإبادة" },
+                        { href: "/posts/genocide" , label: "غيرتني الإبادة!" },
                         { href: "/posts/muhakama-fi-halbat-al-musar'a1", label: "محاكاة في حلبة المصارعة - القسم الأول" },
                         { href: "/posts/muhakama-fi-halbat-al-musar'a",  label: "محاكاة في حلبة المصارعة - القسم الثاني" },
                         { href: "/posts/alhkum",  label: "الحكم المنصف، بين الحقيقة والوهم" },
@@ -323,7 +323,7 @@ type SearchResult = {
                         {openArticles && (
                         <ul className="w-full mt-1 text-sm text-right bg-[#4A4A4A] text-white">
                             {[
-                             { href: "/posts/genocide" , label: "!غيرتني الإبادة" },
+                             { href: "/posts/genocide" , label: "غيرتني الإبادة !" },
                             { href: "/posts/muhakama-fi-halbat-al-musar'a1", label: "محاكاة في حلبة المصارعة - القسم الأول" },
                             { href: "/posts/muhakama-fi-halbat-al-musar'a",  label: "محاكاة في حلبة المصارعة - القسم الثاني" },
                             { href: "/posts/alhkum",  label: "الحكم المنصف، بين الحقيقة والوهم" },

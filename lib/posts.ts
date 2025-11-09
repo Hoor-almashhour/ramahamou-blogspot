@@ -8,7 +8,7 @@ const postsDir = path.join(process.cwd(), "content", "posts");
 export async function getAllPosts() {
   const files = fs.readdirSync(postsDir);
   const posts = files.map((filename) => {
-    // إزالة التاريخ من بداية الاسم (مثل 2025-10-07-)
+    
     const slug = filename.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
     const filePath = path.join(postsDir, filename);
     const raw = fs.readFileSync(filePath, "utf-8");

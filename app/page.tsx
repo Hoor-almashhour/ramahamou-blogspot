@@ -76,7 +76,7 @@ export default async function Home() {
                 href={`/tag/${encodeURIComponent(t)}`}
                 className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full hover:bg-ramaGold hover:text-[#C39E71]  transition"
               >
-                {t}#
+                #{t}
               </Link>
             ))}
           </div>
