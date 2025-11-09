@@ -30,9 +30,9 @@ type SearchResult = {
 
     const links = [
     { href: "/", label: "الرئيسية", icon: <TiHome className=" text-[#C39E71]  hover:text-white" /> },
-    { href: "/thoughts", label: "خواطر" },
-    { href: "/stories", label: "قصص" },
-    { href: "/about", label: " عن راما" },
+    { href: "/thoughts", label: "كتب" },
+    { href: "/stories", label: "مشاهد" },
+    { href: "/about", label: "عن رامة" },
     { href: "/contact", label: "تواصل معنا" },
   ];
 
@@ -104,7 +104,7 @@ type SearchResult = {
                     {/*القائمة المنسدلة للمقالات */}
                     <li className="relative group">
                         <button className="flex items-center  flex-row-reverse gap-1 px-4 py-2 rounded-lg hover:bg-[#6B3074] hover:text-white">
-                            <IoChevronDown />  المقالات
+                            <IoChevronDown />  مقالات
                         </button>
                     <ul className="absolute right-0 top-full mt-1 w-64 text-right text-sm bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                         {[
@@ -290,7 +290,7 @@ type SearchResult = {
                 </button>
 
                 <h2 className="text-center mb-6 font-semibold text-lg">
-                 راما حمو
+                 رامة حمو
                 </h2>
                 <ul className="space-y-3 flex flex-col items-start font-semibold text-lg">
                     
@@ -317,7 +317,7 @@ type SearchResult = {
                                 openArticles ? "rotate-180" : ""
                                 }`}
                             />{" "}
-                           المقالات
+                           مقالات
                         </button>
 
                         {openArticles && (
