@@ -1,5 +1,5 @@
 "use client";
-import { FaWhatsapp,  FaInstagram, FaSearch } from "react-icons/fa";
+import { FaWhatsapp,  FaInstagram, FaSearch, FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
@@ -148,7 +148,7 @@ type SearchResult = {
                 </ul>
               
                 {/* 🔍 Search Button */}
-                <div className="hidden md:flex items-center  relative">
+                <div className="hidden md:flex items-center flex-row-reverse gap-3 relative">
                     <button
                         onClick={() => setShowSearch(!showSearch)}
                         className="cursor-pointer flex items-center  justify-center w-8 h-8 rounded-full hover:bg-[#6B3074] hover:text-white transition"
@@ -199,8 +199,14 @@ type SearchResult = {
                               <p className="px-3 py-2 text-gray-400">لا توجد نتائج</p>
                             )}
                         </div>
-                        )}
+                    )}
+                    <button className="flex items-center space-x-1 text-gray-700 hover:text-[#C39E71] transition-colors">
+                        <FaUser size={16} />
+                        <Link href="/MyAccountPage" className="sm:inline">تسجيل الدخول</Link>
+                   </button>
                 </div>
+                
+                    
 
                {/* Mobile Menu Button */}
                 <div className="flex items-center gap-3 md:hidden">
@@ -355,6 +361,10 @@ type SearchResult = {
                         </Link>
                         </li>
                     ))}
+                     <button className="flex items-center space-x-1 text-white mt-3 hover:text-[#C39E71] transition-colors">
+                        <FaUser size={16} />
+                        <Link href="/MyAccountPage" className="sm:inline">تسجيل الدخول</Link>
+                   </button>
                 </ul>
 
             
