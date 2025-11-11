@@ -1,7 +1,5 @@
+"use client";
 import LoginSection from "../src/Components/LoginSection/LoginSection";
-
-
-
 
 export default function MyAccountPage() {
   return (
