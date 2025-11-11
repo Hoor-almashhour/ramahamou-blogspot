@@ -15,7 +15,7 @@ const LoginSection = () => {
   });
     const [user, setUser] = useState<User | null>(null);
 
-  // ✅ متابعة المستخدم الحالي من Firebase
+ 
   useEffect(() => {
    const unsubscribe = listenToAuth((currentUser: User | null) => {
      setUser(currentUser);
@@ -31,7 +31,7 @@ const LoginSection = () => {
     }));
   };
 
-  // ✅ تسجيل الدخول عبر Firebase
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
