@@ -2,7 +2,7 @@
 
 import LoginSection from "../src/Components/LoginSection/LoginSection";
 
-console.log('✅ Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+export const dynamic = 'force-dynamic'
 
 
 export default function MyAccountPage() {
