@@ -2,12 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { login, logout, listenToAuth } from '@/lib/auth';
 import { User } from '@supabase/supabase-js';
 
 
+
 const LoginSection = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     usernameOrEmail: '',
     password: '',
@@ -37,7 +41,8 @@ const LoginSection = () => {
     try {
       await login(formData.usernameOrEmail, formData.password);
       alert('✅ تم تسجيل دخول الأدمن بنجاح');
-      window.location.href = '/';
+      router.push('/'); // استخدمي useRouter من next/navigation
+
     } catch (err) {
       console.error(err);
       alert('❌ اسم المستخدم أو كلمة المرور غير صحيحة');
@@ -48,7 +53,7 @@ const LoginSection = () => {
   const handleLogout = async () => {
     await logout();
     alert('👋 تم تسجيل الخروج بنجاح');
-    window.location.href = '/';
+     router.push('/');
   };
 
   return (

@@ -148,7 +148,7 @@ type SearchResult = {
                 </ul>
               
                 {/* 🔍 Search Button */}
-                <div className="hidden md:flex items-center flex-row-reverse gap-3 relative">
+                <div className="hidden md:flex items-center flex-row-reverse gap-4 relative">
                     <button
                         onClick={() => setShowSearch(!showSearch)}
                         className="cursor-pointer flex items-center  justify-center w-8 h-8 rounded-full hover:bg-[#6B3074] hover:text-white transition"
@@ -200,10 +200,15 @@ type SearchResult = {
                             )}
                         </div>
                     )}
-                    <button className="flex items-center space-x-1 text-gray-700 hover:text-[#C39E71] transition-colors">
+                    <Link
+                        href="/MyAccountPage"
+                        className="flex items-center space-x-1 text-[#C39E71]  hover:text-[#6B3074] transition-colors"
+                        >
+                        
+                        <span className="sm:inline">تسجيل الدخول</span>
                         <FaUser size={16} />
-                        <Link href="/MyAccountPage" className="sm:inline">تسجيل الدخول</Link>
-                   </button>
+                    </Link>
+
                 </div>
                 
                     
@@ -361,10 +366,15 @@ type SearchResult = {
                         </Link>
                         </li>
                     ))}
-                     <button className="flex items-center space-x-1 text-white mt-3 hover:text-[#C39E71] transition-colors">
+                     <Link
+                        href="/MyAccountPage"
+                         onClick={() => setOpen(false)}
+                        className="flex items-center space-x-1 text-white mt-3  hover:text-[#6B3074] transition-colors"
+                        >
+                        
+                        <span className="sm:inline">تسجيل الدخول</span>
                         <FaUser size={16} />
-                        <Link href="/MyAccountPage" className="sm:inline">تسجيل الدخول</Link>
-                   </button>
+                    </Link>
                 </ul>
 
             
