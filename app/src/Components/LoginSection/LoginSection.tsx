@@ -41,7 +41,7 @@ const LoginSection = () => {
     try {
       await login(formData.usernameOrEmail, formData.password);
       alert('✅ تم تسجيل دخول الأدمن بنجاح');
-      router.push('/'); // استخدمي useRouter من next/navigation
+      router.push('/'); 
 
     } catch (err) {
       console.error(err);
@@ -49,7 +49,7 @@ const LoginSection = () => {
     }
   };
 
-  // ✅ تسجيل الخروج
+
   const handleLogout = async () => {
     await logout();
     alert('👋 تم تسجيل الخروج بنجاح');
