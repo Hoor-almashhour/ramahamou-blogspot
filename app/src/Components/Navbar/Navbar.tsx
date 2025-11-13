@@ -49,10 +49,10 @@ type SearchResult = {
                     
                     :للتواصل
                 </span>
-                <span className="flex items-center justify-center flex-row-reverse gap-1">
+                <Link href="https://wa.me/905347152280" className="flex items-center justify-center flex-row-reverse gap-1">
                     <FaWhatsapp className="text-[#827382]" />
                       00905347152280
-                </span>
+                </Link>
                 <span className="flex items-center justify-center flex-row-reverse gap-1">
                     <MdEmail className="text-[#827382]" />
                       ramahamou.blogspot.com
@@ -383,9 +383,9 @@ type SearchResult = {
                     <p className="mb-2 flex justify-center flex-row-reverse gap-2 items-center text-gray-200">
                       <MdEmail />  ramahamou.blogspot.com
                     </p>
-                    <p dir="ltr" className="mb-3 flex justify-center flex-row gap-2 items-center text-gray-200">
+                    <Link href="https://wa.me/905347152280" dir="ltr" className="mb-3 flex justify-center flex-row gap-2 items-center text-gray-200">
                       <FaWhatsapp  />  +905347152280
-                    </p>
+                    </Link>
 
                     <div className="flex justify-center gap-2 text-gray-200">
                     
