@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic';
 
 import LoginSection from "../src/Components/LoginSection/LoginSection";
 
