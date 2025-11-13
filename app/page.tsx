@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Hero from "./src/Components/Hero/Hero";
 import PostCard from "./src/Components/PostCard/PostCard";
+import AddPostButton from "./AddPostButton/page";
 
 export default async function Home() {
   const posts = await getAllPosts();
@@ -29,9 +30,13 @@ export default async function Home() {
 
       {/* 📰 أحدث المقالات */}
       <section className="max-w-7xl mx-auto px-4 py-12 text-right">
-        <h2 className="text-2xl font-bold text-black mb-6  pr-3">
-          📰 أحدث المقالات
-        </h2>
+        <div className=" flex justify-between items-center mb-6 ">
+             <h2 className="text-2xl font-bold text-black mb-6  pr-3">
+               📰 أحدث المقالات
+            </h2>
+            <AddPostButton />
+        </div>
+       
         <div className="grid justify-center align-items md:grid-cols-4 gap-6">
           {latestPosts.map((p) => (
             <PostCard key={p.slug} post={p} />

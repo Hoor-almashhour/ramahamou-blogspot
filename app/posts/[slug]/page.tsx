@@ -5,6 +5,11 @@ import React from "react";
 import Markdown from "react-markdown";
 import { getPostBySlug } from "@/lib/posts";
 import ReactMarkdown from "react-markdown";
+import { Link } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+
+
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -18,6 +23,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = await getPostBySlug(slug);
 
   if (!post) return notFound();
+
+
+  const whatsappLink = `https://wa.me/905347152280?text=مرحباً،أريد شراء مقال: ${encodeURIComponent(post.meta.title)}`;
+
 
   return (
     <section className="bg-[#fdf8f6] min-h-screen py-40 px-4">
@@ -42,11 +51,21 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             />
           </div>
         )}
-
+      
         {/* المحتوى */}
         <div className="prose prose-lg prose-headings:text-[#6B3074] prose-strong:text-[#C39E71] prose-img:rounded-xl prose-img:mx-auto prose-img:my-6 max-w-none prose-p:mb-6 prose-p:leading-8 prose-p:text-[#333] prose-blockquote:border-r-4 prose-blockquote:border-[#C39E71] prose-blockquote:bg-[#faf5f3] prose-blockquote:pr-4 prose-blockquote:rounded-md prose-blockquote:text-[#555] prose-blockquote:italic" dir="rtl">
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
+        <div className="mt-2.5 text-center">
+          <a
+          href={whatsappLink}
+          target="_blank"
+         className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition"
+        >
+            شراء المقال عبر واتساب
+             <FaWhatsapp className="text-sm" />
+        </a>
+      </div>
       </article>
     </section>
   );
