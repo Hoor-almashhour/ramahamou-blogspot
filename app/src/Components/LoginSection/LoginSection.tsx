@@ -7,8 +7,6 @@ import { useRouter } from 'next/navigation';
 import { login, logout, listenToAuth } from '@/lib/auth';
 import { User } from '@supabase/supabase-js';
 
-
-
 const LoginSection = () => {
   const router = useRouter();
 
@@ -17,15 +15,15 @@ const LoginSection = () => {
     password: '',
     rememberMe: false
   });
-    const [user, setUser] = useState<User | null>(null);
 
- 
+  const [user, setUser] = useState<User | null>(null);
+
   useEffect(() => {
-   const unsubscribe = listenToAuth((currentUser: User | null) => {
-     setUser(currentUser);
-   });
-   return () => unsubscribe();
- }, []);
+    const unsubscribe = listenToAuth((currentUser: User | null) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -35,25 +33,42 @@ const LoginSection = () => {
     }));
   };
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await login(formData.usernameOrEmail, formData.password);
-      alert('✅ تم تسجيل دخول الأدمن بنجاح');
-      router.push('/'); 
 
-    } catch (err) {
-      console.error(err);
-      alert('❌ اسم المستخدم أو كلمة المرور غير صحيحة');
+    // ✅ إزالة المسافات الزائدة
+    const email = formData.usernameOrEmail.trim();
+    const password = formData.password.trim();
+
+    try {
+      await login(email, password);
+      alert('✅ تم تسجيل دخول الأدمن بنجاح');
+      router.push('/');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error('Login error:', err.message);
+        alert('❌ ' + err.message);
+      } else {
+        console.error('Login error:', err);
+        alert('❌ حدث خطأ غير متوقع');
+      }
     }
   };
 
-
   const handleLogout = async () => {
-    await logout();
-    alert('👋 تم تسجيل الخروج بنجاح');
-     router.push('/');
+    try {
+      await logout();
+      alert('👋 تم تسجيل الخروج بنجاح');
+      router.push('/');
+    } catch (err: unknown) {
+    if (err instanceof Error) {
+        console.error('Logout error:', err.message);
+        alert('❌ ' + err.message);
+      } else {
+        console.error('Logout error:', err);
+        alert('❌ حدث خطأ غير متوقع');
+      }
+    }
   };
 
   return (
@@ -62,9 +77,8 @@ const LoginSection = () => {
         {user ? 'Welcome Admin' : 'تسجيل الدخول'}
       </h2>
 
-      {/* 🔐 إذا لم يكن المستخدم مسجل دخول */}
       {!user ? (
-        <form   onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="usernameOrEmail" className="block text-sm font-medium text-gray-700 mb-1">
               * عنوان البريد الإلكتروني *
@@ -82,7 +96,7 @@ const LoginSection = () => {
 
           <div className="mb-4">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-             * كلمة المرور  *
+              * كلمة المرور *
             </label>
             <input
               type="password"
@@ -95,8 +109,8 @@ const LoginSection = () => {
             />
           </div>
 
-          <div  className="flex items-center justify-between mb-4">
-            <div className="flex items-center flex-row-reverse ">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center flex-row-reverse">
               <input
                 type="checkbox"
                 id="rememberMe"
@@ -110,7 +124,7 @@ const LoginSection = () => {
               </label>
             </div>
             <Link href="#" className="text-sm text-gray-700 hover:text-[#C39E71]">
-              هل نسيت كلمة مرورك ؟
+              هل نسيت كلمة مرورك؟
             </Link>
           </div>
 
@@ -129,9 +143,8 @@ const LoginSection = () => {
           تسجيل الخروج ({user.email})
         </button>
       )}
-
     </div>
   );
 };
 
-export default LoginSection
+export default LoginSection;
