@@ -369,7 +369,7 @@ type SearchResult = {
                      <Link
                         href="/MyAccountPage"
                          onClick={() => setOpen(false)}
-                        className="flex items-center space-x-1 text-white mt-3  hover:text-[#6B3074] transition-colors"
+                        className="flex items-center space-x-1 px-3 text-white mt-3  hover:text-[#6B3074] transition-colors"
                         >
                         
                         <span className="sm:inline">تسجيل الدخول</span>
