@@ -19,7 +19,38 @@ export default function AddPostPage() {
 
   const [loading, setLoading] = useState(false);
 
-   
+   useEffect(() => {
+    const checkAdmin = async () => {
+        const {
+        data: { user },
+        } = await supabase.auth.getUser();
+
+        if (!user) {
+        setIsAdmin(false);
+        router.push('/MyAccountPage');
+        return;
+        }
+
+        const role =
+        user.user_metadata.role ||
+        user.app_metadata.role ||
+        null;
+
+        console.log("ROLE:", role); // مهم جداً لمعرفة مكان الدور الفعلي
+
+        if (role !== "admin") {
+        setIsAdmin(false);
+        router.push("/");
+        return;
+        }
+
+        setIsAdmin(true);
+    };
+
+    checkAdmin();
+    }, [router]);
+
+
 
     /** رفع الصورة */
     const uploadImage = async () => {
@@ -70,11 +101,11 @@ export default function AddPostPage() {
         router.push('/');
         }
     };
-
     
 
+
   return (
-    <section className="max-w-2xl mx-auto mt-10 p-36 bg-white shadow rounded-xl min-h-screen">
+    <section className="max-w-2xl mx-auto px-16 py-40 md:py-36 mt-10 bg-gray-100  rounded-xl ">
       <h1 className="text-2xl font-bold mb-6 text-center"> إضافة مقالة جديدة ➕ </h1>
 
         <form onSubmit={submitPost} className="space-y-4">

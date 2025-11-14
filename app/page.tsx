@@ -31,7 +31,7 @@ export default async function Home() {
       {/* 📰 أحدث المقالات */}
       <section className="max-w-7xl mx-auto px-4 py-12 text-right">
         <div className=" flex justify-between items-center mb-6 ">
-             <h2 className="text-2xl font-bold text-black mb-6  pr-3">
+             <h2 className="text-2xl font-bold text-black  pr-3">
                📰 أحدث المقالات
             </h2>
             <AddPostButton />
