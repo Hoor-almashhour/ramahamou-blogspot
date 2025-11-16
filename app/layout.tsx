@@ -3,7 +3,9 @@ import { Cairo } from 'next/font/google'
 import "./globals.css";
 import Navbar from "./src/Components/Navbar/Navbar";
 import Footer from "./src/Components/Footer/Footer";
-
+import ClientLayout from "./ClientLayout";
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
 
 const cairo = Cairo({ 
   subsets: ['arabic'],
@@ -26,9 +28,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className={cairo.variable}>
        <body className={cairo .className}
       >
-          <Navbar />
-          {children}
-          <Footer/>
+            <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

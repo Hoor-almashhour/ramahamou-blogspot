@@ -1,24 +1,23 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+
 import { NextResponse } from "next/server";
+import { supabase } from "@/lib/supabaseClient";
 
 export async function GET() {
-  const postsDir = path.join(process.cwd(), "content/posts");
-  const files = fs.readdirSync(postsDir);
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-  const posts = files.map((filename) => {
-    const filePath = path.join(postsDir, filename);
-    const fileContent = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(fileContent);
-    const slug = filename.replace(".md", "");
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-    return {
-      title: data.title || slug,
-      date: data.date,
-      href: `/posts/${slug}`,
-    };
-  });
+  const posts = data.map(p => ({
+    title: p.title,
+    date: p.created_at,
+    href: `/posts/${p.slug}`,
+    excerpt: p.excerpt,
+    category: p.category,
+    tags: p.tags,
+  }));
 
   return NextResponse.json(posts);
 }

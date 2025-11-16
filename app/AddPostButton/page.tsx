@@ -41,7 +41,7 @@ export default function AddPostButton() {
 
   return (
     <button
-      onClick={() => router.push("/add-post")}
+      onClick={() => router.push("/add-or-edit-post")}
       className="bg-[#C39E71] flex gap-1.5 items-center justify-center text-white px-4 py-2 rounded-full hover:bg-[#c1935a] transition"
     >
       إضافة مقال <FaPlus />
