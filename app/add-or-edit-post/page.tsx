@@ -1,6 +1,11 @@
 "use client";
 
 export const dynamic = "force-dynamic";
+export const dynamicParams = false;
+export const revalidate = 0;  
+export const fetchCache = "force-no-store";
+export const runtime = "edge";  
+
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamicImport from "next/dynamic";
