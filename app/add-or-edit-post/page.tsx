@@ -1,13 +1,14 @@
 "use client";
 
+export const dynamic = "force-dynamic";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
 import { supabase } from "@/lib/supabaseClient";
 import '@uiw/react-md-editor/markdown-editor.css';
 import '@uiw/react-markdown-preview/markdown.css';
 
-const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
+const MDEditor = dynamicImport(() => import('@uiw/react-md-editor'), { ssr: false });
 
 export default function AddOrEditPostPage() {
   const router = useRouter();
