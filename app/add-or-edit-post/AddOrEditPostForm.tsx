@@ -227,8 +227,14 @@ export default function AddOrEditPostForm() {
               if (file) setImagePreview(file ? URL.createObjectURL(file) : null);
             }}
           />
-          {imagePreview && <img src={imagePreview} className="w-full h-64 object-cover rounded-lg border mt-2"/>}
-          {!imagePreview && existingImage && <img src={existingImage} className="w-full h-64 object-cover rounded-lg border mt-2"/>}
+          {imagePreview && imagePreview !== "" && (
+            <img src={imagePreview} className="w-full h-64 object-cover rounded-lg border mt-2"/>
+            )}
+
+            {!imagePreview && existingImage && existingImage !== "" && (
+            <img src={existingImage} className="w-full h-64 object-cover rounded-lg border mt-2"/>
+            )}
+
         </div>
 
         {/* محرّر المحتوى */}
