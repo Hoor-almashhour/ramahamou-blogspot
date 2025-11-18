@@ -9,11 +9,10 @@ export default async function Home() {
   // 🟣 جلب المقالات من Supabase
   const posts = await getAllPosts();
 
-  // 🟣 مقالات مميزة (أول 3)
-  const featuredPosts = posts.slice(0, 3);
+  const featuredPosts = posts.slice(1, 4);
 
-    // 🟣 أحدث المقالات (من 3 إلى 6)
-  const latestPosts = posts.slice(2);
+  const latestPosts = posts.slice(0);
+
 
 
   // 🟣 جلب التصنيفات والوسوم من قاعدة البيانات

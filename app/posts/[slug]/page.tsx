@@ -20,7 +20,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
   const post = await getPostBySlug(resolvedParams.slug);
   if (!post) return notFound();
 
-  const whatsappLink = `https://wa.me/905347152280?text=مرحباً، أريد شراء مقال: ${encodeURIComponent(post.meta.title)}`;
+  
 
   return (
     <section className="bg-[#fdf8f6] min-h-screen py-36 px-4  mt-2.5" >
@@ -45,17 +45,6 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
         )}
         <div className="prose prose-lg max-w-none" dir="rtl">
           <ReactMarkdown>{post.content}</ReactMarkdown>
-        </div>
-        <div className="mt-8 text-center">
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 transition"
-          >
-            شراء المقال عبر واتساب
-            <FaWhatsapp />
-          </a>
         </div>
       </article>
     </section>
