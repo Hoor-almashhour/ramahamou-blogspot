@@ -9,9 +9,9 @@ export default async function Home() {
   // 🟣 جلب المقالات من Supabase
   const posts = await getAllPosts();
 
-  const featuredPosts = posts.slice(1, 4);
+  const featuredPosts = posts.slice(0, 3);
 
-  const latestPosts = posts.slice(0);
+  const latestPosts = posts.slice(2);
 
 
 
