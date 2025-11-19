@@ -46,7 +46,7 @@ export default function BooksPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-36 text-right">
-      <h1 className="text-3xl font-bold text-[#6B3074] mb-10 text-center">📚 الكتب</h1>
+      <h1 className="text-3xl font-bold text-[#6B3074] mb-10 text-center"> كتب 📚</h1>
 
       {isAdmin && (
         <div className="text-center mb-10">

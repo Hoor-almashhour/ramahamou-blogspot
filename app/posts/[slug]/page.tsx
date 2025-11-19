@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import { getPostBySlug } from "@/lib/posts";
 import { FaWhatsapp } from "react-icons/fa";
+
 type PostPageParams = {
   slug: string;
 };
@@ -33,13 +34,10 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
         </p>
         {post.meta.image && (
           <div className="flex justify-center mb-8">
-            <Image
-              src={post.meta.image}
+             <img
+               src={post.meta.image}
               alt={post.meta.title}
-              width={700}
-              height={400}
-              className="rounded-xl shadow-sm object-cover"
-              unoptimized
+              className="w-full h-96 object-cover rounded-xl"
             />
           </div>
         )}

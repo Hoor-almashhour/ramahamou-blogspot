@@ -10,12 +10,11 @@ export default async function Home() {
   const posts = await getAllPosts();
 
   const featuredPosts = posts.slice(0, 3);
-
-  const latestPosts = posts.slice(2);
-
+  const latestPosts = posts.slice(0, 6); 
 
 
-  // 🟣 جلب التصنيفات والوسوم من قاعدة البيانات
+
+
   const { categories, tags } = await getCategoriesAndTags();
 
   return (
