@@ -5,6 +5,9 @@ import Hero from "./src/Components/Hero/Hero";
 import PostCard from "./src/Components/PostCard/PostCard";
 import AddPostButton from "./AddPostButton/page";
 
+export const dynamic = "force-dynamic";
+
+
 export default async function Home() {
   // 🟣 جلب المقالات من Supabase
   const posts = await getAllPosts();
