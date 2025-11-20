@@ -10,12 +10,13 @@ type BookPageParams = {
 export default async function BookPage(props: { params: Promise<BookPageParams> }) {
   const { slug } = await props.params;
 
-  const decodedSlug = decodeURIComponent(slug);
+ 
+  
 
   const { data: book, error } = await supabase
     .from("books")
     .select("*")
-    .eq("slug", decodedSlug)
+    .eq("slug", slug)
     .maybeSingle();
 
  
@@ -29,7 +30,13 @@ export default async function BookPage(props: { params: Promise<BookPageParams> 
   return (
     <section className="bg-[#fdf8f6] min-h-screen py-42 px-4">
       <article className="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-10 text-right">
-
+         {book.image_url && (
+          <img
+            src={book.image_url}
+            alt={book.title}
+            className="w-full rounded-2xl mb-8"
+          />
+        )}
         <h1 className="text-3xl font-bold text-[#6B3074] text-center">
           {book.title}
         </h1>

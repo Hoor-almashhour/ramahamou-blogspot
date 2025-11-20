@@ -11,6 +11,7 @@ interface Book {
   text: string;
   date: string;
   slug: string;
+  image_url: string;
 }
 
 export default function BooksPage() {
@@ -66,6 +67,13 @@ export default function BooksPage() {
             className="border border-[#C39E71] bg-white/60 rounded-2xl p-5 shadow hover:scale-[1.02] transition"
           >
             
+            {book.image_url && (
+              <img
+                src={book.image_url}
+                alt={book.title}
+                className="w-full h-48 object-cover rounded-lg mb-3"
+              />
+            )}
 
             <h2 className="text-xl font-semibold text-[#6B3074]">{book.title}</h2>
             <p className="text-[#827382] mt-2">{book.text}</p>

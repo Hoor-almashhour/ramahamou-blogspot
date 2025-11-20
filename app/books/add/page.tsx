@@ -10,24 +10,40 @@ export default function AddBookPage() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // إنشاء slug تلقائي
-  function generateSlug(title: string) {
-    return title
-    .toLowerCase()
-    .trim()
-    .replace(/[^\u0600-\u06FFa-zA-Z0-9\s-]/g, "") // إزالة الرموز فقط
-    .replace(/\s+/g, "-") // مسافات → شرطة
-    .replace(/-+/g, "-") // دمج الشرطات
-    .replace(/^-+|-+$/g, ""); // إزالة الشرطات من البداية والنهاية
-  }
+ 
 
  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
    setLoading(true);
 
-    const slug = generateSlug(title);
+        const slug = encodeURIComponent(title.trim()); 
+
+       // ============ رفع الصورة إلى Storage ============
+    let image_url = "";
+
+    if (imageFile) {
+      const fileExt = imageFile.name.split(".").pop();
+      const fileName = `${Date.now()}.${fileExt}`; // اسم آمن 100%
+      const filePath = `covers/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("books-image")
+        .upload(filePath, imageFile);
+
+      if (uploadError) {
+        alert("خطأ أثناء رفع صورة الغلاف ❌");
+        setLoading(false);
+        return;
+      }
+
+      const { data } = supabase.storage
+      .from("books-image")
+      .getPublicUrl(filePath);
+      image_url = data.publicUrl;
+    }
 
     const { error } = await supabase.from("books").insert([
       {
@@ -35,8 +51,10 @@ export default function AddBookPage() {
         text,
         date,
         slug,
+        image_url,
       },
     ]);
+    
 
     setLoading(false);
 
@@ -100,7 +118,19 @@ export default function AddBookPage() {
             required
           />
         </div>
-
+          {/* غلاف الكتاب */}
+        <div>
+          <label className="block mb-2 font-semibold text-[#6B3074]">
+            صورة غلاف الكتاب
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            className="w-full p-3 border rounded-lg"
+            onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+            required
+          />
+        </div>
         <button
           type="submit"
           disabled={loading}
