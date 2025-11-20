@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo } from 'next/font/google'
 import "./globals.css";
-import Navbar from "./src/Components/Navbar/Navbar";
-import Footer from "./src/Components/Footer/Footer";
+
 import ClientLayout from "./ClientLayout";
 import '@uiw/react-md-editor/markdown-editor.css';
 import '@uiw/react-markdown-preview/markdown.css';

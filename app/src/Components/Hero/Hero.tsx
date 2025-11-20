@@ -9,26 +9,21 @@ const Hero = () => {
 
         {/* Logo */}
         <div>
-            <Image
+            <img
                 src="/logo/logo.png"
                 alt="logo"
-                width={240}
-                height={140}
-                className="object-cover text-3xl"
+                className="object-cover text-3xl w-60 h-36"
                 sizes="(max-width: 768px) 100vw, 33vw"
-                unoptimized
+             
             />
         </div>
         
          {/* شعار الموقع */}
         <div className="flex flex-col items-center mb-6">
-            <Image
-            src="/Images/image.png" // ضع مسار شعارك هنا
+            <img
+            src="/Images/rama3.jpg" 
             alt="rama"
-            width={500}
-            height={400}
-            className="object-contain"
-            unoptimized
+            className="object-contain max-full md:max-w-lg min-h-full rounded-3xl"
             />
         </div>
 
